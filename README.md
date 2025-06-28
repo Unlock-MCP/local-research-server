@@ -1,6 +1,13 @@
 # Local Research MCP Server
 
-A free, private research assistant for Claude Desktop that searches the web and scrapes content using DuckDuckGo and Python. This MCP server gives Claude the ability to access real-time information while keeping all processing local for complete privacy.
+A free, private research assistant for AI development environments that searches the web and scrapes content using DuckDuckGo and Python. This MCP server gives AI assistants the ability to access real-time information while keeping all processing local for complete privacy.
+
+Compatible with:
+- **Claude Desktop** - Anthropic's official desktop app
+- **Claude Code** - Anthropic's CLI tool for developers
+- **Gemini CLI** - Gemini's CLI tool
+- **Cline** - VS Code extension for AI-powered coding
+- **Any MCP-compatible client**
 
 ## Features
 
@@ -15,7 +22,8 @@ A free, private research assistant for Claude Desktop that searches the web and 
 ### Prerequisites
 
 - Python 3.10 or higher
-- Claude Desktop installed
+- One of the compatible AI environments:
+  - Claude Desktop, Claude Code, Google CLI, Cline, or other MCP client
 - Basic command line knowledge
 
 ### Installation
@@ -43,12 +51,14 @@ A free, private research assistant for Claude Desktop that searches the web and 
    python research_server.py
    ```
 
-### Claude Desktop Configuration
+### Configuration
 
-Add this configuration to your Claude Desktop config file:
+Choose your AI environment:
 
-**macOS:** `~/Library/Application Support/Claude/claude_desktop_config.json`
-**Windows:** `%APPDATA%/Claude/claude_desktop_config.json`
+#### Claude Desktop
+Add this to your config file:
+- **macOS:** `~/Library/Application Support/Claude/claude_desktop_config.json`
+- **Windows:** `%APPDATA%/Claude/claude_desktop_config.json`
 
 ```json
 {
@@ -67,18 +77,33 @@ Add this configuration to your Claude Desktop config file:
 }
 ```
 
+#### Claude Code
+Add this to your `CLAUDE.md` file or use the CLI:
+```bash
+claude --mcp-server local-researcher="uv --directory /path/to/your/local-research-server run python research_server.py"
+```
+
+#### Google AI Studio / Gemini CLI
+Configure via your MCP client settings or environment variables.
+
+#### Cline (VS Code)
+Add to your Cline MCP server configuration in VS Code settings.
+
 Replace `/path/to/your/local-research-server` with the full path to this directory.
 
 ## Usage
 
-After configuration, restart Claude Desktop completely. You'll see a plug icon (🔌) indicating the server is connected.
+After configuration, restart your AI environment. Connection indicators vary by platform:
+- **Claude Desktop**: Look for the plug icon (🔌)
+- **Claude Code**: Server status shown in CLI output
+- **Other platforms**: Check your MCP client's connection status
 
-Ask Claude research questions like:
+Ask your AI assistant research questions like:
 - "What are the latest developments in AI research this week?"
 - "Research current renewable energy trends in Europe"
 - "Find recent cybersecurity threat reports"
 
-Claude will automatically use your local server to fetch real-time information.
+Your AI assistant will automatically use the local server to fetch real-time information.
 
 ## How It Works
 
@@ -94,7 +119,7 @@ All processing happens locally with no data sent to external services except for
 ## Architecture
 
 ```
-Claude Desktop
+AI Client (Claude Desktop/Code/Gemini/Cline)
     ↓ (MCP Protocol)
 Local Research Server
     ↓ (Search API)
@@ -102,7 +127,7 @@ DuckDuckGo Search
     ↓ (HTTP Requests)
 Target Websites
     ↓ (Content Extraction)
-Clean Text → Claude
+Clean Text → AI Assistant
 ```
 
 ## Configuration Options
@@ -143,8 +168,8 @@ Consider these enhancements:
 ### Common Issues
 
 **Server not connecting:**
-- Verify the absolute path in Claude config
-- Restart Claude Desktop completely
+- Verify the absolute path in your AI client config
+- Restart your AI environment completely
 - Check that Python dependencies are installed
 
 **No search results:**
