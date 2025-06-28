@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "local-researcher": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/path/to/your/local-research-server",
+        "run",
+        "python",
+        "research_server.py"
+      ]
+    }
+  }
+}
